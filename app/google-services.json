@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "229329134626",
+    "firebase_url": "https://movierecommendation-f9d51.firebaseio.com",
+    "project_id": "movierecommendation-f9d51",
+    "storage_bucket": "movierecommendation-f9d51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229329134626:android:1f8bb18d7caf9b88e1967b",
+        "android_client_info": {
+          "package_name": "com.example.movierecommendation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229329134626-kjlf4j34e1ce42vmqjqm6irntovln1me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsYAzfQhBpIO03pMemrs8c-E1T8mzfIrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229329134626-kjlf4j34e1ce42vmqjqm6irntovln1me.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
