@@ -7,41 +7,41 @@
     tools:context=".MainActivity">
 
 
-    <EditText
-        android:id="@+id/editTextTextUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="280dp"
-        android:hint="Enter your email" />
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTextUserName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:layout_marginTop="280dp"-->
+<!--        android:hint="Enter your email" />-->
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter your password"
-        android:inputType="textPassword"
-        android:layout_marginTop="320dp"/>
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTextPassword"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Enter your password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:layout_marginTop="320dp"/>-->
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="150dp"
-        android:onClick="login"/>
+<!--    <Button-->
+<!--        android:id="@+id/login"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Login"-->
+<!--        android:layout_marginTop="400dp"-->
+<!--        android:layout_marginLeft="150dp"-->
+<!--        android:onClick="login"/>-->
 
-    <Button
-        android:id="@+id/signUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SIGNUP"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="150dp"
-        android:onClick="signUp"/>
+<!--    <Button-->
+<!--        android:id="@+id/signUp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="SIGNUP"-->
+<!--        android:layout_marginTop="450dp"-->
+<!--        android:layout_marginLeft="150dp"-->
+<!--        android:onClick="signUp"/>-->
 
 
 </RelativeLayout>
