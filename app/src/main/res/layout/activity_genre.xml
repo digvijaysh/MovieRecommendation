@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_columnSpan="2"
+    android:backgroundTint="@color/grey_500"
+    android:stretchColumns="1,2"
+    tools:context=".GenreActivity">
+
+    <TextView
+        android:layout_column="1"
+        android:layout_margin="20dp"
+        android:text="Pick your favourite genres"
+        android:textSize="24sp"></TextView>
+
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/btn_action"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="ACTION"
+
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_horror"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="2"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="HORROR"
+            android:textColor="@color/white" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/btn_drama"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="DRAMA"
+
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_comedy"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="2"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="COMEDY"
+            android:textColor="@color/white" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/btn_thriller"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="THRILLER"
+
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_romance"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="2"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="ROMANCE"
+            android:textColor="@color/white" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/btn_scifi"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="SCI-FI"
+
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_crime"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="2"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="CRIME"
+            android:textColor="@color/white" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/btn_adventure"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="ADVENTURE"
+
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_fantasy"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_column="2"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="FANTASY"
+            android:textColor="@color/white" />
+    </TableRow>
+
+
+</TableLayout>
+

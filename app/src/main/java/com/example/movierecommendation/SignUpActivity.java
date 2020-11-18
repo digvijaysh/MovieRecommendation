@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -33,23 +32,15 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-      actionBar = getSupportActionBar();
-      actionBar.hide();
+        actionBar = getSupportActionBar();
 
-        userName = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+        actionBar.hide();
+
+        userName = findViewById(R.id.username);
+        password = findViewById(R.id.password);
 
         mAuth = FirebaseAuth.getInstance();
-        signUp=(Button) findViewById(R.id.signUp);
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(SignUpActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
-
 
 
     public void registerUser(View view) {
@@ -62,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
             userName.setError("Please enter a valid email");
             userName.requestFocus();
             return;
@@ -74,24 +65,17 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(),"User Registered Successfully",Toast.LENGTH_SHORT).show();
-
-                } else {
-                    if(task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(),"Already Registered or Username Already Exists",Toast.LENGTH_SHORT).show();
-
-                    }
+        mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                    Toast.makeText(getApplicationContext(), "Already Registered or Username Already Exists", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
     }
-
-
-
 }
