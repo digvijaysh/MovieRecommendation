@@ -1,6 +1,7 @@
 package com.example.movierecommendation;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -25,11 +26,14 @@ public class SignUpActivity extends AppCompatActivity {
     EditText userName, password;
     Button signUp;
     private FirebaseAuth mAuth;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+      actionBar = getSupportActionBar();
+      actionBar.hide();
 
         userName = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);

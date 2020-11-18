@@ -5,32 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/grey_500"
     tools:context=".SignUpActivity">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Username"
-        android:layout_gravity="center"
-        android:layout_marginTop="200dp"
-        />
+    <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="28dp"
+            android:text="MOVIEFLIX"
+            android:textColor="@color/blue"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/tvSignUpMessage"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:textSize="28dp"
+            android:text="Sign Up"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter Password"
-        android:inputType="textPassword"
-        android:layout_marginTop="20dp"/>
+            android:id="@+id/username"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:hint="Enter Username"
+            android:paddingStart="10dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            />
+
+    <EditText
+            android:id="@+id/password"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="Enter Password"
+            android:paddingStart="10dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"/>
 
     <Button
-        android:id="@+id/signUp"
-        android:onClick="registerUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SignUp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
+            android:id="@+id/signUp"
+            android:onClick="registerUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:backgroundTint="@color/blue"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"/>
+
 </LinearLayout>
