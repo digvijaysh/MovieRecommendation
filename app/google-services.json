@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "229329134626",
-    "firebase_url": "https://movierecommendation-f9d51.firebaseio.com",
-    "project_id": "movierecommendation-f9d51",
-    "storage_bucket": "movierecommendation-f9d51.appspot.com"
+    "project_number": "309205195621",
+    "firebase_url": "https://movieflix-ff575.firebaseio.com",
+    "project_id": "movieflix-ff575",
+    "storage_bucket": "movieflix-ff575.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:229329134626:android:1f8bb18d7caf9b88e1967b",
+        "mobilesdk_app_id": "1:309205195621:android:0913f08da8db317dd55f8c",
         "android_client_info": {
           "package_name": "com.example.movierecommendation"
         }
       },
       "oauth_client": [
         {
-          "client_id": "229329134626-kjlf4j34e1ce42vmqjqm6irntovln1me.apps.googleusercontent.com",
+          "client_id": "309205195621-b5c8et7asqfld4epqcdhpabtktcnlplg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movierecommendation",
+            "certificate_hash": "b31b5bff182676d3c4e282077854652f72f9afe9"
+          }
+        },
+        {
+          "client_id": "309205195621-c3f5hf79o4rdblf1hfa78i05oldj4vk2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAsYAzfQhBpIO03pMemrs8c-E1T8mzfIrw"
+          "current_key": "AIzaSyAN4y8TjHbRjuwsy4vKr0_JzPgutkfwQqE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "229329134626-kjlf4j34e1ce42vmqjqm6irntovln1me.apps.googleusercontent.com",
+              "client_id": "309205195621-eua47f7ikpjgqdrkl93lhm6hjuu15psd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

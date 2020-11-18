@@ -1,47 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_500"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="28sp"
+        android:text="MOVIEFLIX"
+        android:textColor="@color/blue"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/editTextTextUserName"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="textPersonName"-->
-<!--        android:layout_marginTop="280dp"-->
-<!--        android:hint="Enter your email" />-->
+    <TextView
+        android:id="@+id/tvSignInMessage"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:textSize="28dp"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"/>
 
-<!--    <EditText-->
-<!--        android:id="@+id/editTextTextPassword"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Enter your password"-->
-<!--        android:inputType="textPassword"-->
-<!--        android:layout_marginTop="320dp"/>-->
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:hint="Enter E-mail address"
+        android:paddingStart="10dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        />
 
-<!--    <Button-->
-<!--        android:id="@+id/login"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Login"-->
-<!--        android:layout_marginTop="400dp"-->
-<!--        android:layout_marginLeft="150dp"-->
-<!--        android:onClick="login"/>-->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:hint="Enter Password"
+        android:paddingStart="10dp"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/signUp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="SIGNUP"-->
-<!--        android:layout_marginTop="450dp"-->
-<!--        android:layout_marginLeft="150dp"-->
-<!--        android:onClick="signUp"/>-->
+    <Button
+        android:id="@+id/signIn"
+        android:onClick="loginUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:text="OR"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white">
 
+    </TextView>
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:text="Sign in using your account with"
+        android:textColor="@color/white">
+
+    </TextView>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInGoogle"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+         />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create an Account"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

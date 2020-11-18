@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -39,6 +40,14 @@ public class SignUpActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
 
         mAuth = FirebaseAuth.getInstance();
+        signUp=(Button) findViewById(R.id.signUp);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(SignUpActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -70,10 +79,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(),"User Registered Successfully",Toast.LENGTH_SHORT).show();
-                    finish();
+
                 } else {
                     if(task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(),"Already Registered or Username Already Exists",Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }
@@ -81,4 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }
