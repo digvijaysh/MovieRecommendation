@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.editTextTextUserName);
         password = (EditText) findViewById(R.id.editTextTextPassword);
 
-
         mAuth = FirebaseAuth.getInstance();
-
     }
 
     public void signUp(View view) {
