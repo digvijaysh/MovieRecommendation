@@ -22,13 +22,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private String TAG="MainActivity";
+    private String TAG = "MainActivity";
     private int RC_SIGN_IN = 101;
     EditText userName, password;
     FirebaseAuth mAuth;
-    Button signInGoogle,signIn,signUp;
+    Button signInGoogle, signIn, signUp;
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButton signInButton;
 
@@ -38,14 +39,27 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (firebaseUser != null || account != null) {
+            Intent intent1 = new Intent(this, MainActivity.class);
+            startActivity(intent1);
+            String user = firebaseUser==null?account.getEmail():firebaseUser.getEmail();
+            Toast.makeText(this,"Signed in as "+user,Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         userName = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 
-//        signInGoogle=(Button) findViewById(R.id.signInGoogle);
+//      signInGoogle=(Button) findViewById(R.id.signInGoogle);
         signInButton = findViewById(R.id.signInGoogle);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
-        signIn=(Button) findViewById(R.id.signIn);
-        signUp=(Button) findViewById(R.id.signUp);
+        signIn = (Button) findViewById(R.id.signIn);
+        signUp = (Button) findViewById(R.id.signUp);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
                 .requestEmail()
@@ -70,17 +84,15 @@ public class LoginActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-
-
     }
 
-
     public void signUp(View view) {
-        Intent intent = new Intent(this,SignUpActivity.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 
@@ -94,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
             userName.setError("Please enter a valid email");
             userName.requestFocus();
             return;
@@ -106,23 +118,23 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
 
-        }
+    }
 
 
-    private void signIn(){
-        Intent signInIntent =mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent,RC_SIGN_IN);
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     @Override
@@ -143,12 +155,12 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Toast.makeText(LoginActivity.this, "Successfully logedd in!", Toast.LENGTH_LONG).show();
             //firebaseAuthWithGoogle(account.getIdToken());
-            Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.d("Signin Failed", e.getMessage() + " "+e.getStatusCode());
+            Log.d("Signin Failed", e.getMessage() + " " + e.getStatusCode());
             Toast.makeText(LoginActivity.this, "Please try again", Toast.LENGTH_LONG).show();
         }
     }
