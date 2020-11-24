@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movierecommendation.LoginActivity;
@@ -25,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.Executor;
 
@@ -32,6 +35,10 @@ import java.util.concurrent.Executor;
 public class ProfileFragment extends Fragment {
 
     Button logout;
+    ImageView image;
+    TextView tUsername;
+    String username;
+    String photoURL;
     FragmentTransaction fragmentTransaction;
     GoogleSignInAccount account;
     FirebaseUser firebaseUser;
@@ -57,6 +64,8 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         logout = view.findViewById(R.id.logout);
+        image = view.findViewById(R.id.profilePicture);
+        tUsername = view.findViewById(R.id.userEmail);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +76,16 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        username = account == null ? firebaseUser.getEmail() : account.getEmail();
+        photoURL = account == null ? null : account.getPhotoUrl().toString();
+        tUsername.setText(username);
+        if(photoURL!= null) {
+            Picasso.get().load(photoURL).into(image);
+        }
+        else{
+            image.setImageDrawable(getResources().getDrawable(R.drawable.ic_profile));
+        }
         return view;
     }
 
@@ -81,4 +100,5 @@ public class ProfileFragment extends Fragment {
                     }
                 });
     }
+
 }

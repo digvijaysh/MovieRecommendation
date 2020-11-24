@@ -29,6 +29,7 @@ public class Movie {
     public String Genre;
     public String Writer;
     public String Error;
+    public String Name;
 
     @Override
     public String toString() {
@@ -60,6 +61,7 @@ public class Movie {
                 ", imdbID='" + imdbID + '\'' +
                 ", imdbRating='" + imdbRating + '\'' +
                 ", totalSeasons='" + totalSeasons + '\'' +
+                ", Name='" + Name + '\'' +
                 '}';
     }
 

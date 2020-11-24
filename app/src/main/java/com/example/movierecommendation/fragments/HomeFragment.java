@@ -1,5 +1,6 @@
 package com.example.movierecommendation.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +36,8 @@ public class HomeFragment extends Fragment {
     MovieAdapter movieAdapter;
     List<Movie> movieList;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public static final String TAG = "HomeFragment";
 
     public HomeFragment() {
@@ -42,6 +47,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -67,7 +73,7 @@ public class HomeFragment extends Fragment {
                     if (movie.Title != null && movie.Poster != null)
                         movieList.add(movie);
                 }
-                movieAdapter = new MovieAdapter(getContext(), movieList);
+                movieAdapter = new MovieAdapter(getActivity(), movieList);
                 rvMovies.setAdapter(movieAdapter);
             }
 

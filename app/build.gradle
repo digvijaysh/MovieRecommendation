@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.google.firebase:firebase-firestore:22.0.0'
     testImplementation 'junit:junit:4.+'
     implementation 'com.squareup.picasso:picasso:2.8'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -52,6 +53,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
     implementation "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
+
 }
 
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
