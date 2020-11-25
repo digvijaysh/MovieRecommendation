@@ -30,7 +30,6 @@ public class GenreActivity extends AppCompatActivity implements View.OnClickList
             buttons[i].setOnClickListener(this);
             isSelected.put(buttonIds[i], false);
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
