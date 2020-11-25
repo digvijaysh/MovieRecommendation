@@ -57,9 +57,9 @@ public class FavoriteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      collectionReference = firebaseFirestore.collection("users");
-      account = GoogleSignIn.getLastSignedInAccount(getContext());
-      user = new User();
+        collectionReference = firebaseFirestore.collection("users");
+        account = GoogleSignIn.getLastSignedInAccount(getContext());
+        user = new User();
     }
 
     @Override
@@ -84,23 +84,26 @@ public class FavoriteFragment extends Fragment {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                          User u = documentSnapshot.toObject(User.class);
-                          Set<String> moviesLikedByCurrentUser = new HashSet<>(u.liked);
-                          database.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                              for (DataSnapshot movieSnapshot : snapshot.getChildren()) {
-                                Movie movie = movieSnapshot.getValue(Movie.class);
-                                if (moviesLikedByCurrentUser.contains(movie.Title))
-                                  movieList.add(movie);
-                              }
-                              movieAdapter = new MovieAdapter(getActivity(), movieList);
-                              rvFavorite.setAdapter(movieAdapter);
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                            }
-                          });
+                            User u = documentSnapshot.toObject(User.class);
+                            Set<String> moviesLikedByCurrentUser = new HashSet<>(u.liked);
+                            database.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot movieSnapshot : snapshot.getChildren()) {
+                                        Movie movie = movieSnapshot.getValue(Movie.class);
+                                        if (moviesLikedByCurrentUser.contains(movie.Title)) {
+                                            movie.isLiked = true;
+                                            movieList.add(movie);
+                                        }
+                                    }
+                                    movieAdapter = new MovieAdapter(getActivity(), movieList);
+                                    rvFavorite.setAdapter(movieAdapter);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
                         }
                     }
                 });

@@ -53,6 +53,10 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
     implementation "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
+    implementation 'com.google.guava:guava:28.1-android'
+    implementation 'org.tensorflow:tensorflow-lite:2.2.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0-rc1'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0-rc1'
 
 }
 

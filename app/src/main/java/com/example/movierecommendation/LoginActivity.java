@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Toast.makeText(LoginActivity.this, "Successfully logedd in!", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "Successfully logged in!", Toast.LENGTH_LONG).show();
             //firebaseAuthWithGoogle(account.getIdToken());
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);

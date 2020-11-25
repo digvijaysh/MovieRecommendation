@@ -84,6 +84,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.tvGenre.setText(movie.get(position).Genre.substring(0, g == -1 ? movie.get(position).Genre.length() : g));
         holder.tvReleasedDate.setText(movie.get(position).Year);
         Picasso.get().load(movie.get(position).Poster).into(holder.poster);
+        Boolean like = movie.get(position).isLiked;
+        holder.likeButton.setLiked(like);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,8 +161,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 }
             });
         }
-
-
     }
 
 
