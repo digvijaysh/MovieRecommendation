@@ -15,6 +15,7 @@ import com.example.movierecommendation.fragments.HomeFragment;
 import com.example.movierecommendation.fragments.ProfileFragment;
 import com.example.movierecommendation.fragments.RecommendationFragment;
 import com.example.movierecommendation.fragments.SearchFragment;
+import com.example.movierecommendation.fragments.TabFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.hide();
         account = GoogleSignIn.getLastSignedInAccount(this);
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users");
@@ -59,13 +58,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         // do something here
                         //Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
-                        fragment = new HomeFragment();
+                        fragment = new TabFragment();
                         break;
                     case R.id.action_favorite:
                         // do something here
                         //Toast.makeText(MainActivity.this, "compose", Toast.LENGTH_SHORT).show();
                         fragment = new FavoriteFragment();
-                        actionBar.hide();
                         break;
                     case R.id.action_recommend:
                         // do something here
