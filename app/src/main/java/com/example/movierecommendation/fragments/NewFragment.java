@@ -1,18 +1,16 @@
 package com.example.movierecommendation.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.movierecommendation.MovieAdapter;
 import com.example.movierecommendation.R;
@@ -32,19 +30,27 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class HomeFragment extends Fragment {
 
-    RecyclerView rvMovies;
+class SortByYear implements Comparator<Movie> {
+
+    @Override
+    public int compare(Movie o1, Movie o2) {
+        int year1 = Integer.parseInt(o1.Year.substring(0, 4));
+        int year2 = Integer.parseInt(o2.Year.substring(0, 4));
+        return year2 - year1;
+    }
+}
+
+public class NewFragment extends Fragment {
+
+    RecyclerView rvNewTab;
     MovieAdapter movieAdapter;
     List<Movie> movieList;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -52,9 +58,7 @@ public class HomeFragment extends Fragment {
     GoogleSignInAccount account;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
-    public static final String TAG = "HomeFragment";
-
-    public HomeFragment() {
+    public NewFragment() {
         // Required empty public constructor
     }
 
@@ -68,18 +72,19 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_new, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rvMovies = view.findViewById(R.id.rvMovies);
-        rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        rvNewTab = view.findViewById(R.id.rvNewTab);
+        rvNewTab.setLayoutManager(new LinearLayoutManager(getContext()));
 
         movieList = new ArrayList<>();
         String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+
         collectionReference
                 .whereEqualTo("email", email)
                 .get()
@@ -98,9 +103,9 @@ public class HomeFragment extends Fragment {
                                             movieList.add(movie);
                                         }
                                     }
-                                    Collections.shuffle(movieList);
+                                    Collections.sort(movieList, new SortByYear());
                                     movieAdapter = new MovieAdapter(getContext(), movieList);
-                                    rvMovies.setAdapter(movieAdapter);
+                                    rvNewTab.setAdapter(movieAdapter);
                                 }
 
                                 @Override

@@ -6,26 +6,30 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.movierecommendation.fragments.HomeFragment;
+import com.example.movierecommendation.fragments.NewFragment;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
-    public TabsAdapter(FragmentManager fm, int NoofTabs){
+
+    public TabsAdapter(FragmentManager fm, int NoofTabs) {
         super(fm);
         this.mNumOfTabs = NoofTabs;
     }
+
     @Override
     public int getCount() {
         return mNumOfTabs;
     }
+
     @Override
-    public Fragment getItem(int position){
-        switch (position){
+    public Fragment getItem(int position) {
+        switch (position) {
             case 0:
-                HomeFragment home = new HomeFragment();
+                Fragment home = new HomeFragment();
                 return home;
             case 1:
-                HomeFragment home1 = new HomeFragment();
-                return home1;
+                Fragment newTab = new NewFragment();
+                return newTab;
             default:
                 return null;
         }
