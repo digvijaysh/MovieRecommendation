@@ -83,9 +83,9 @@ public class SearchFragment extends Fragment {
             String result = "";
             String title = editText.getText().toString();
             if (!title.equals("")) {
-                String s = title.charAt(0)+"";
-                String s1 = title.substring(1,title.length());
-                result = s.toUpperCase()+s1;
+                String s = title.charAt(0) + "";
+                String s1 = title.substring(1, title.length());
+                result = s.toUpperCase() + s1;
             }
             firebaseMovieSearch(result);
         });
@@ -103,6 +103,18 @@ public class SearchFragment extends Fragment {
             protected void populateViewHolder(MovieHolder movieHolder, Movie movie, int i) {
                 if (movie.Title != null && movie.Poster != null)
                     movieHolder.setDetails(movie.Title, movie.Genre, movie.Year, movie.Runtime, movie.Poster);
+                movieHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FragmentManager manager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+                        Fragment fragment = new MovieDetailFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("result", movie.Poster + "#" + movie.Title + "#" + movie.Runtime + "#"
+                                + movie.Year + "#" + movie.Genre + "#" + movie.Plot);
+                        fragment.setArguments(bundle);
+                        manager.beginTransaction().replace(R.id.flContainer, fragment).addToBackStack(null).commit();
+                    }
+                });
             }
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
@@ -111,10 +123,17 @@ public class SearchFragment extends Fragment {
     public static class MovieHolder extends RecyclerView.ViewHolder {
 
         View mView;
+        CollectionReference collectionReference;
+        GoogleSignInAccount account;
+        DatabaseReference databaseReference;
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
         public MovieHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            collectionReference = firebaseFirestore.collection("users");
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+            account = GoogleSignIn.getLastSignedInAccount(itemView.getContext());
         }
 
         public void setDetails(String title, String genre, String year, String duration, String poster1) {
@@ -132,6 +151,43 @@ public class SearchFragment extends Fragment {
             tvReleasedDate.setText(year);
             tvDuration.setText(duration);
             Picasso.get().load(poster1).into(poster);
+
+            likeButton = itemView.findViewById(R.id.thumb_button);
+
+            likeButton.setOnLikeListener(new OnLikeListener() {
+                @Override
+                public void liked(LikeButton likeButton) {
+                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+                    collectionReference
+                            .whereEqualTo("email", email)
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        DocumentReference documentReference = collectionReference.document(documentSnapshot.getId());
+                                        documentReference.update("liked", FieldValue.arrayUnion(tvTitle.getText().toString()));
+                                    }
+                                }
+                            });
+                }
+                @Override
+                public void unLiked(LikeButton likeButton) {
+                    collectionReference
+                            .whereEqualTo("email", account.getEmail())
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        DocumentReference documentReference = collectionReference.document(documentSnapshot.getId());
+                                        documentReference.update("liked", FieldValue.arrayRemove(tvTitle.getText().toString()));
+                                        likeButton.setLiked(false);
+                                    }
+                                }
+                            });
+                }
+            });
         }
     }
 }
