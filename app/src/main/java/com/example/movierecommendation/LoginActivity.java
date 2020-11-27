@@ -19,12 +19,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
@@ -34,13 +42,17 @@ public class LoginActivity extends AppCompatActivity {
     Button signInGoogle, signIn, signUp;
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButton signInButton;
-
+    CollectionReference collectionReference;
+    FirebaseFirestore firebaseFirestore;
+    GoogleSignInAccount account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        collectionReference = firebaseFirestore.collection("users");
+        account = GoogleSignIn.getLastSignedInAccount(this);
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
@@ -94,11 +106,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void signUp(View view) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
     public void loginUser(View view) {
         String user = userName.getText().toString().trim();
         String pass = password.getText().toString().trim();
@@ -129,13 +136,12 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("Username", mAuth.getCurrentUser().getEmail());
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid username/password!Please try again", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-
     }
 
 
@@ -162,8 +168,9 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Toast.makeText(LoginActivity.this, "Successfully logged in!", Toast.LENGTH_LONG).show();
             //firebaseAuthWithGoogle(account.getIdToken());
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, GenreActivity.class);
             startActivity(intent);
+            finish();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -202,5 +209,19 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Log in failed!Please try again", Toast.LENGTH_LONG).show();
 
         }
+    }
+
+    public void checkUserExists() {
+        collectionReference
+                .whereEqualTo("email", account.getEmail())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.size() == 0) {
+
+                        }
+                    }
+                });
     }
 }

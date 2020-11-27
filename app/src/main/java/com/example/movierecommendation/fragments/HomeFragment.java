@@ -21,6 +21,7 @@ import com.example.movierecommendation.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +48,6 @@ public class HomeFragment extends Fragment {
     MovieAdapter movieAdapter;
     List<Movie> movieList;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference collectionReference;
     GoogleSignInAccount account;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -79,9 +79,9 @@ public class HomeFragment extends Fragment {
 
 
         movieList = new ArrayList<>();
-
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
         collectionReference
-                .whereEqualTo("email", account.getEmail())
+                .whereEqualTo("email", email)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
                                         }
                                     }
                                     Collections.shuffle(movieList);
-                                    movieAdapter = new MovieAdapter(getActivity(), movieList);
+                                    movieAdapter = new MovieAdapter(getContext(), movieList);
                                     rvMovies.setAdapter(movieAdapter);
                                 }
                                 @Override

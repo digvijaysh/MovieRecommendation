@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.movierecommendation.fragments.FavoriteFragment;
-import com.example.movierecommendation.fragments.HomeFragment;
 import com.example.movierecommendation.fragments.ProfileFragment;
 import com.example.movierecommendation.fragments.RecommendationFragment;
 import com.example.movierecommendation.fragments.SearchFragment;
@@ -35,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     GoogleSignInAccount account;
     CollectionReference collectionReference;
+    CollectionReference collectionReference1;
     FirebaseFirestore firebaseFirestore;
 
 
@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
         account = GoogleSignIn.getLastSignedInAccount(this);
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users");
+        collectionReference1 = firebaseFirestore.collection("movie");
         addUserToFireStore();
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+        fragmentManager.beginTransaction().replace(R.id.flContainer,new TabFragment()).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -98,15 +100,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addUserToFireStore() {
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
         collectionReference
-                .whereEqualTo("email", account.getEmail())
+                .whereEqualTo("email", email)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (queryDocumentSnapshots.size() == 0) {
                             Map<String, Object> user = new HashMap<>();
-                            user.put("email", account.getEmail());
+                            user.put("email", email);
                             user.put("liked", new ArrayList<>());
                             String id = collectionReference.document().getId();
                             collectionReference.document(id).set(user)
@@ -117,5 +120,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+
+    public void addMovieToFirestore(){
+
     }
 }

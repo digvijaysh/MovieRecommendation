@@ -30,6 +30,7 @@ import com.example.movierecommendation.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -122,9 +123,9 @@ public class RecommendationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvRecommend = view.findViewById(R.id.rvRecommend);
         rvRecommend.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
         collectionReference
-                .whereEqualTo("email", account.getEmail())
+                .whereEqualTo("email", email)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
