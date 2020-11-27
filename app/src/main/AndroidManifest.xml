@@ -11,7 +11,6 @@
         android:roundIcon="@drawable/ic_movie"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieRecommendation">
-        <activity android:name=".Search"></activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/SplashScreen">
@@ -21,9 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity
-            android:name=".MainActivity" />
-        <activity android:name=".LoginActivity" android:theme="@style/Theme.NoActionBar"/>
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.NoActionBar" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".GenreActivity" />
     </application>

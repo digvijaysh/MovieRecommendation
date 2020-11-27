@@ -37,7 +37,7 @@
     <ScrollView
         android:id="@+id/sc"
         android:layout_below="@+id/textView2"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -51,6 +51,7 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tv"
+                android:textSize="15sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:justificationMode="inter_word"

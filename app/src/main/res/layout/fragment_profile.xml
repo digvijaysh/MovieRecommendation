@@ -5,30 +5,99 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="100dp"></ImageView>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"></ImageView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="16sp"
+                android:layout_toRightOf="@id/profilePicture"
+                android:textColor="@color/white"></TextView>
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userEmail"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/blue"
+                android:layout_marginLeft="20dp"
+                android:layout_alignStart="@id/userEmail"
+                android:text="Logout"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/userEmail"
+        android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profilePicture"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="70dp"
-        android:textColor="@color/white"></TextView>
+        android:text="About"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="30dp"
+        android:textSize="18sp"
+        android:layout_below="@id/separator3"></TextView>
 
-    <Button
-        android:id="@+id/logout"
+    <TextView
+        android:id="@+id/about_description"
+        android:layout_below="@id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:text="Logout"/>
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/about">
+    </TextView>
+    <TextView
+        android:id="@+id/version"
+        android:layout_below="@id/about_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Version">
+    </TextView>
+    <TextView
+        android:id="@+id/version_number"
+        android:layout_below="@id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
 
+        android:text="1.0.0.0">
+    </TextView>
+
+    <View
+        android:id="@+id/separator3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="15dp"
+        android:background="@color/black" />
 </RelativeLayout>

@@ -1,151 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_columnSpan="2"
-    android:backgroundTint="@color/grey_500"
-    android:stretchColumns="1,2"
+    android:background="@color/grey_500"
+    android:orientation="vertical"
     tools:context=".GenreActivity">
 
     <TextView
-        android:layout_column="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Pick your favourite genres"
-        android:textSize="24sp"></TextView>
+        android:text="Pick your favourite genres!"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
+    <GridLayout
+        android:id="@+id/mainGrid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:padding="10dp"
+        android:rowCount="3">
 
-    <TableRow>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardAction"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_action" />
+
+                <TextView
+                    android:id="@+id/tvAction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="ACTION"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardRomantic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_romantic" />
+
+                <TextView
+                    android:id="@+id/tvRomantic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="ROMANCE"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDrama"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_drama" />
+
+                <TextView
+                    android:id="@+id/tvDrama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="DRAMA"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSciFi"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_sci_fi" />
+
+                <TextView
+                    android:id="@+id/tvSciFi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SCI-FI"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardThriller"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_thriller" />
+
+                <TextView
+                    android:id="@+id/tvThriller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="THRILLER"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardComedy"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_comedy" />
+
+                <TextView
+                    android:id="@+id/tvComedy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="COMEDY"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_action"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="ACTION"
-
-            android:textColor="@color/white" />
+            android:id="@+id/btnDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:text="DONE" />
 
         <Button
-            android:id="@+id/btn_horror"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="2"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="HORROR"
-            android:textColor="@color/white" />
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:id="@+id/btn_drama"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="DRAMA"
-
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_comedy"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="2"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="COMEDY"
-            android:textColor="@color/white" />
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:id="@+id/btn_thriller"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="THRILLER"
-
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_romance"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="2"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="ROMANCE"
-            android:textColor="@color/white" />
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:id="@+id/btn_scifi"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="SCI-FI"
-
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_crime"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="2"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="CRIME"
-            android:textColor="@color/white" />
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:id="@+id/btn_adventure"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="ADVENTURE"
-
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_fantasy"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_column="2"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/blue"
-            android:text="FANTASY"
-            android:textColor="@color/white" />
-    </TableRow>
-
-
-</TableLayout>
+            android:id="@+id/btnSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="SKIP" />
+    </LinearLayout>
+</LinearLayout>
 

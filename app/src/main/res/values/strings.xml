@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">MOVIEFLIX</string>
     <string name="client_id">309205195621-c3f5hf79o4rdblf1hfa78i05oldj4vk2.apps.googleusercontent.com</string>
+    <string name="about">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et laoreet purus. Vestibulum fermentum vestibulum lectus eu tristique. Vestibulum sed libero non nibh aliquet consectetur.
+        Sed nec turpis non augue semper aliquam sed venenatis libero.  </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

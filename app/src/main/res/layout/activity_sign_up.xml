@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="150dp"
             android:textSize="28dp"
-            android:text="Sign Up"
+            android:text="Welcome!"
             android:textColor="@color/white"
             android:layout_height="wrap_content"/>
 
@@ -33,7 +33,7 @@
             android:id="@+id/username"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:hint="Enter Username"
+            android:hint="Email"
             android:paddingStart="10dp"
             android:textColor="@color/black"
             android:background="@color/white"
@@ -46,7 +46,7 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="Enter Password"
+            android:hint="Password"
             android:paddingStart="10dp"
             android:background="@color/white"
             android:textColor="@color/black"
