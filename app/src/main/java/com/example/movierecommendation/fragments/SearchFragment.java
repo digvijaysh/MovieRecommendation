@@ -110,7 +110,7 @@ public class SearchFragment extends Fragment {
                         Fragment fragment = new MovieDetailFragment();
                         Bundle bundle = new Bundle();
                         bundle.putString("result", movie.Poster + "#" + movie.Title + "#" + movie.Runtime + "#"
-                                + movie.Year + "#" + movie.Genre + "#" + movie.Plot);
+                                + movie.Year.substring(0,4) + "#" + movie.Genre + "#" + movie.Plot);
                         fragment.setArguments(bundle);
                         manager.beginTransaction().replace(R.id.flContainer, fragment).addToBackStack(null).commit();
                     }
@@ -171,6 +171,7 @@ public class SearchFragment extends Fragment {
                                 }
                             });
                 }
+
                 @Override
                 public void unLiked(LikeButton likeButton) {
                     collectionReference

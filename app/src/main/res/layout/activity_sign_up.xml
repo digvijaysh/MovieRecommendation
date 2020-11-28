@@ -31,24 +31,24 @@
 
     <EditText
             android:id="@+id/username"
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Email"
             android:paddingStart="10dp"
             android:textColor="@color/black"
-            android:background="@color/white"
+            android:background="@drawable/et_rounded"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             />
 
     <EditText
             android:id="@+id/password"
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:ems="10"
             android:hint="Password"
             android:paddingStart="10dp"
-            android:background="@color/white"
+            android:background="@drawable/et_rounded"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:inputType="textPassword"

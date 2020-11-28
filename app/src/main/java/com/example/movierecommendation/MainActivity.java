@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         addUserToFireStore();
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        fragmentManager.beginTransaction().replace(R.id.flContainer,new TabFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContainer, new TabFragment()).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -116,14 +116,9 @@ public class MainActivity extends AppCompatActivity {
                                     .addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show())
                                     .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show());
                         } else {
-                            Toast.makeText(MainActivity.this, "Record Already Exists", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Record Already Exists", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-    }
-
-
-    public void addMovieToFirestore(){
-
     }
 }

@@ -8,27 +8,29 @@
 
     <EditText
         android:id="@+id/ed1"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:background="@android:color/white"
+        android:background="@drawable/et_rounded"
         android:ems="10"
         android:hint="Search"
         android:inputType="textPersonName"
-        android:textColor="@android:color/black"
-        android:textSize="28dp" />
+        android:textColor="@android:color/white"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/ed1"
-        android:background="@android:color/holo_blue_bright"
-        android:text="Search"
-        android:textColor="@android:color/white" />
+        android:backgroundTint="@color/blue"
+        android:text="Done"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearch"
