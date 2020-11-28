@@ -65,6 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this,GenreActivity.class);
+                startActivity(intent);
                 finish();
             } else {
                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {

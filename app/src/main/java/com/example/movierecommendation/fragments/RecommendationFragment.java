@@ -123,7 +123,7 @@ public class RecommendationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvRecommend = view.findViewById(R.id.rvRecommend);
         rvRecommend.setLayoutManager(new LinearLayoutManager(getContext()));
-        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
         collectionReference
                 .whereEqualTo("email", email)
                 .get()

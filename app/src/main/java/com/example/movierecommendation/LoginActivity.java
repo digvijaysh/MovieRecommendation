@@ -106,6 +106,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     public void loginUser(View view) {
         String user = userName.getText().toString().trim();
         String pass = password.getText().toString().trim();
@@ -134,7 +137,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.i("Username", mAuth.getCurrentUser().getEmail());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("Username", mAuth.getCurrentUser().getEmail());
                     startActivity(intent);
                     finish();
                 } else {

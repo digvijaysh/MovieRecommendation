@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
 
 
         movieList = new ArrayList<>();
-        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
         collectionReference
                 .whereEqualTo("email", email)
                 .get()

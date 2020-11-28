@@ -1,6 +1,7 @@
 package com.example.movierecommendation;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.movierecommendation.fragments.FavoriteFragment;
+import com.example.movierecommendation.fragments.HomeFragment;
 import com.example.movierecommendation.fragments.ProfileFragment;
 import com.example.movierecommendation.fragments.RecommendationFragment;
 import com.example.movierecommendation.fragments.SearchFragment;
@@ -34,60 +36,43 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     GoogleSignInAccount account;
     CollectionReference collectionReference;
-    CollectionReference collectionReference1;
     FirebaseFirestore firebaseFirestore;
+    Fragment fragment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActionBar actionBar = getSupportActionBar();
         account = GoogleSignIn.getLastSignedInAccount(this);
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users");
-        collectionReference1 = firebaseFirestore.collection("movie");
         addUserToFireStore();
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        fragmentManager.beginTransaction().replace(R.id.flContainer, new TabFragment()).commit();
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment;
-                switch (menuItem.getItemId()) {
-                    case R.id.action_home:
-                        // do something here
-                        //Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
-                        fragment = new TabFragment();
-                        break;
-                    case R.id.action_favorite:
-                        // do something here
-                        //Toast.makeText(MainActivity.this, "compose", Toast.LENGTH_SHORT).show();
-                        fragment = new FavoriteFragment();
-                        break;
-                    case R.id.action_recommend:
-                        // do something here
-                        //Toast.makeText(MainActivity.this, "profile", Toast.LENGTH_SHORT).show();
-                        fragment = new RecommendationFragment();
-                        break;
-                    case R.id.action_search:
-                        // do something here
-                        //Toast.makeText(MainActivity.this, "profile", Toast.LENGTH_SHORT).show();
-                        fragment = new SearchFragment();
-                        break;
-                    case R.id.action_profile:
-                        // do something here
-                        //Toast.makeText(MainActivity.this, "profile", Toast.LENGTH_SHORT).show();
-                        fragment = new ProfileFragment();
-                        break;
-                    default:
-                        return true;
-                }
-                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.action_home:
+                    fragment = new TabFragment();
+                    break;
+                case R.id.action_favorite:
+                    fragment = new FavoriteFragment();
+                    break;
+                case R.id.action_recommend:
+                    fragment = new RecommendationFragment();
+                    break;
+                case R.id.action_search:
+                    fragment = new SearchFragment();
+                    break;
+                case R.id.action_profile:
+                    fragment = new ProfileFragment();
+                    break;
+                default:
+                    return true;
             }
+            fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+            return true;
         });
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
@@ -100,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addUserToFireStore() {
-        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
+        Log.d("MainActivity", email);
         collectionReference
                 .whereEqualTo("email", email)
                 .get()
@@ -116,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                     .addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show())
                                     .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show());
                         } else {
-                            //Toast.makeText(MainActivity.this, "Record Already Exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Record Already Exists", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
