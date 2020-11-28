@@ -83,7 +83,7 @@ public class NewFragment extends Fragment {
         rvNewTab.setLayoutManager(new LinearLayoutManager(getContext()));
 
         movieList = new ArrayList<>();
-        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
 
         collectionReference
                 .whereEqualTo("email", email)

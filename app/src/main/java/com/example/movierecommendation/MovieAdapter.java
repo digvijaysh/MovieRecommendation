@@ -131,7 +131,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 @Override
                 public void liked(LikeButton likeButton) {
                     Toast.makeText(itemView.getContext(), "Liked", Toast.LENGTH_SHORT).show();
-                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
                     collectionReference
                             .whereEqualTo("email", email)
                             .get()
@@ -147,8 +147,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 }
                 @Override
                 public void unLiked(LikeButton likeButton) {
+                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
                     collectionReference
-                            .whereEqualTo("email", account.getEmail())
+                            .whereEqualTo("email", email)
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override

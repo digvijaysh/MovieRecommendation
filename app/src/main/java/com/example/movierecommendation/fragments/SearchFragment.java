@@ -157,7 +157,7 @@ public class SearchFragment extends Fragment {
             likeButton.setOnLikeListener(new OnLikeListener() {
                 @Override
                 public void liked(LikeButton likeButton) {
-                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().toString() : account.getEmail();
+                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
                     collectionReference
                             .whereEqualTo("email", email)
                             .get()
@@ -174,8 +174,9 @@ public class SearchFragment extends Fragment {
 
                 @Override
                 public void unLiked(LikeButton likeButton) {
+                    String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
                     collectionReference
-                            .whereEqualTo("email", account.getEmail())
+                            .whereEqualTo("email", email)
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override

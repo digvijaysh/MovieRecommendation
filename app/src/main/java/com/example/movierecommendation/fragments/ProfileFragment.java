@@ -80,8 +80,9 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+              //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                ((MainActivity)getActivity()).finish();
             }
         });
 
