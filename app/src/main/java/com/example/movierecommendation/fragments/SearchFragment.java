@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.movierecommendation.R;
 import com.example.movierecommendation.model.Movie;
@@ -86,8 +87,11 @@ public class SearchFragment extends Fragment {
                 String s = title.charAt(0) + "";
                 String s1 = title.substring(1, title.length());
                 result = s.toUpperCase() + s1;
+                firebaseMovieSearch(result);
+            } else {
+                editText.setError("Empty Search");
+                editText.requestFocus();
             }
-            firebaseMovieSearch(result);
         });
     }
 
@@ -110,7 +114,7 @@ public class SearchFragment extends Fragment {
                         Fragment fragment = new MovieDetailFragment();
                         Bundle bundle = new Bundle();
                         bundle.putString("result", movie.Poster + "#" + movie.Title + "#" + movie.Runtime + "#"
-                                + movie.Year.substring(0,4) + "#" + movie.Genre + "#" + movie.Plot);
+                                + movie.Year.substring(0, 4) + "#" + movie.Genre + "#" + movie.Plot);
                         fragment.setArguments(bundle);
                         manager.beginTransaction().replace(R.id.flContainer, fragment).addToBackStack(null).commit();
                     }

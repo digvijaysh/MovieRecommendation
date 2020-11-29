@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private int RC_SIGN_IN = 101;
     EditText userName, password;
     FirebaseAuth mAuth;
+    FirebaseUser firebaseUser;
     Button signInGoogle, signIn, signUp;
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButton signInButton;
@@ -54,16 +55,14 @@ public class LoginActivity extends AppCompatActivity {
         collectionReference = firebaseFirestore.collection("users");
         account = GoogleSignIn.getLastSignedInAccount(this);
         mAuth = FirebaseAuth.getInstance();
-
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
+        firebaseUser = mAuth.getCurrentUser();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         if (firebaseUser != null || account != null) {
-            Intent intent1 = new Intent(this, MainActivity.class);
-            startActivity(intent1);
+            Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
             String user = firebaseUser == null ? account.getEmail() : firebaseUser.getEmail();
             Toast.makeText(this, "Signed in as " + user, Toast.LENGTH_SHORT).show();
+            startActivity(intent1);
             finish();
         }
 
@@ -105,8 +104,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
 
     public void loginUser(View view) {
@@ -169,8 +166,22 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Toast.makeText(LoginActivity.this, "Successfully logged in!", Toast.LENGTH_LONG).show();
+            if (account != null) {
+                collectionReference.whereEqualTo("email", account.getEmail())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                if (queryDocumentSnapshots.size() == 0) {
+                                    Intent intent = new Intent(LoginActivity.this, GenreActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
+            }
             //firebaseAuthWithGoogle(account.getIdToken());
-            Intent intent = new Intent(LoginActivity.this, GenreActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         } catch (ApiException e) {
@@ -179,49 +190,35 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
+//    private void firebaseAuthWithGoogle(String idToken) {
+//        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            updateUI(user);
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            updateUI(null);
+//                        }
+//                    }
+//                });
+//    }
 
-    private void updateUI(FirebaseUser user) {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        try {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        } catch (NullPointerException e) {
-            Log.d("Null Pointer", e.toString());
-            Toast.makeText(LoginActivity.this, "Log in failed!Please try again", Toast.LENGTH_LONG).show();
-
-        }
-    }
-
-    public void checkUserExists() {
-        collectionReference
-                .whereEqualTo("email", account.getEmail())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (queryDocumentSnapshots.size() == 0) {
-
-                        }
-                    }
-                });
-    }
+//    private void updateUI(FirebaseUser user) {
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+//        try {
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//        } catch (NullPointerException e) {
+//            Log.d("Null Pointer", e.toString());
+//            Toast.makeText(LoginActivity.this, "Log in failed!Please try again", Toast.LENGTH_LONG).show();
+//
+//        }
+//    }
 }

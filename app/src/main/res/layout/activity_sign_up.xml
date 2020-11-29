@@ -8,16 +8,18 @@
     android:background="@color/grey_500"
     tools:context=".SignUpActivity">
 
-    <TextView
-            android:id="@+id/tvAppName"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textSize="28dp"
-            android:text="MOVIEFLIX"
-            android:textColor="@color/blue"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6d6d6d"
+        android:textAlignment="center"
+        android:theme="@style/ToolbarTheme"
+        app:title="MovieFlix"
+        app:titleMarginBottom="5dp"
+        app:titleMarginTop="5dp"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:titleTextColor="#FFFFFF" />
 
     <TextView
             android:id="@+id/tvSignUpMessage"

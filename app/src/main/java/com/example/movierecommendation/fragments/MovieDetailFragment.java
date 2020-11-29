@@ -46,7 +46,7 @@ public class MovieDetailFragment extends Fragment {
         String[] data = bundle.getString("result").split("#");
         int g = data[4].indexOf(",");
       //  System.out.println(Arrays.toString(data));
-        Picasso.get().load(data[0]).into(imageView);
+        Picasso.get().load(data[0]).placeholder(R.drawable.ic_placeholder_new).into(imageView);
         title.setText(data[1]);
         duration.setText(data[4].substring(0,g==-1?data[4].length():g)+" | "+data[3]+" | "+data[2]);
         plot.setText(data[5]);

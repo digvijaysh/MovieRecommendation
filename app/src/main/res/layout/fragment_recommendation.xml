@@ -3,10 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.RecommendationFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6d6d6d"
+        android:textAlignment="center"
+        android:theme="@style/ToolbarTheme"
+        app:title="MovieFlix"
+        app:titleMarginBottom="5dp"
+        app:titleMarginTop="5dp"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:titleTextColor="#FFFFFF" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRecommend"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
