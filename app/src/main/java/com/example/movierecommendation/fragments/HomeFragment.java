@@ -76,8 +76,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvMovies = view.findViewById(R.id.rvMovies);
         rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
         movieList = new ArrayList<>();
         String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
         collectionReference
@@ -94,8 +92,15 @@ public class HomeFragment extends Fragment {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     for (DataSnapshot movieSnapshot : snapshot.getChildren()) {
                                         Movie movie = movieSnapshot.getValue(Movie.class);
-                                        if (movie.Title != null && movie.Poster != null && !moviesLikedByCurrentUser.contains(movie.Title)) {
-                                            movieList.add(movie);
+                                        if (movie.Title != null && movie.Poster != null
+                                                && !moviesLikedByCurrentUser.contains(movie.Title)) {
+                                            int len = u.genre.size();
+                                            for (int i = 0; i < len; i++) {
+                                                String g = u.genre.get(i);
+                                                if (movie.Genre.contains(g)) {
+                                                    movieList.add(movie);
+                                                }
+                                            }
                                         }
                                     }
                                     Collections.shuffle(movieList);

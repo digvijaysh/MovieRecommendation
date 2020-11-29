@@ -33,7 +33,6 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     final FragmentManager fragmentManager = getSupportFragmentManager();
     BottomNavigationView bottomNavigationView;
-    FirebaseAuth mAuth;
     GoogleSignInAccount account;
     CollectionReference collectionReference;
     FirebaseFirestore firebaseFirestore;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         account = GoogleSignIn.getLastSignedInAccount(this);
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users");
-        addUserToFireStore();
+      //  addUserToFireStore();
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
@@ -97,12 +96,11 @@ public class MainActivity extends AppCompatActivity {
                             Map<String, Object> user = new HashMap<>();
                             user.put("email", email);
                             user.put("liked", new ArrayList<>());
+                            user.put("genre",new ArrayList<>());
                             String id = collectionReference.document().getId();
                             collectionReference.document(id).set(user)
                                     .addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show())
                                     .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show());
-                        } else {
-                            Toast.makeText(MainActivity.this, "Record Already Exists", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

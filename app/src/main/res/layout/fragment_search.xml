@@ -5,9 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.SearchFragment">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6d6d6d"
+        android:textAlignment="center"
+        android:theme="@style/ToolbarTheme"
+        app:title="MovieFlix"
+        app:titleMarginBottom="5dp"
+        app:titleMarginTop="5dp"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:titleTextColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/ed1"
+        android:layout_below="@id/toolbar"
         android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
@@ -22,6 +35,7 @@
 
     <Button
         android:id="@+id/search"
+        android:layout_below="@id/toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

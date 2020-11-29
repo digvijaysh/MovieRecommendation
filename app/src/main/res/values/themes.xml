@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.MovieRecommendation" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/grey_500</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -40,4 +40,12 @@
     <style name="Theme.MovieRecommendation.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MovieRecommendation.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/lobsterregular</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">28sp</item>
+    </style>
 </resources>

@@ -11,10 +11,11 @@
 
     <ImageView
         android:id="@+id/ivMovieImage"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_centerVertical="true"
         android:layout_marginBottom="7dp"
+        android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -23,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/ivMovieImage"
-        android:text="TITLE"
         android:ellipsize="end"
         android:maxLines="2"
+        android:text="TITLE"
         android:textColor="@color/white"
         android:textSize="18sp" />
 

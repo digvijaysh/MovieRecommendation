@@ -97,7 +97,7 @@ public class FavoriteFragment extends Fragment {
                                             movieList.add(movie);
                                         }
                                     }
-                                    movieAdapter = new MovieAdapter(getActivity(), movieList);
+                                    movieAdapter = new MovieAdapter(getContext(), movieList);
                                     rvFavorite.setAdapter(movieAdapter);
                                 }
 

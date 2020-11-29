@@ -6,6 +6,7 @@ public class User {
     public String id;
     public String email;
     public List<String> liked = null;
+    public List<String> genre = null;
 
     @Override
     public String toString() {
@@ -13,6 +14,7 @@ public class User {
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", liked=" + liked +
+                ", genre=" + genre +
                 '}';
     }
 }
