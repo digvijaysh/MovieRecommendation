@@ -25,11 +25,11 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                Fragment newTab = new NewFragment();
-                return newTab;
-            case 1:
                 Fragment home = new HomeFragment();
                 return home;
+            case 1:
+                Fragment newTab = new NewFragment();
+                return newTab;
             default:
                 return null;
         }

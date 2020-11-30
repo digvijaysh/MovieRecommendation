@@ -83,26 +83,26 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void addUserToFireStore() {
-        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
-        Log.d("MainActivity", email);
-        collectionReference
-                .whereEqualTo("email", email)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (queryDocumentSnapshots.size() == 0) {
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("email", email);
-                            user.put("liked", new ArrayList<>());
-                            user.put("genre",new ArrayList<>());
-                            String id = collectionReference.document().getId();
-                            collectionReference.document(id).set(user)
-                                    .addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show())
-                                    .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show());
-                        }
-                    }
-                });
-    }
+//    public void addUserToFireStore() {
+//        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
+//        Log.d("MainActivity", email);
+//        collectionReference
+//                .whereEqualTo("email", email)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        if (queryDocumentSnapshots.size() == 0) {
+//                            Map<String, Object> user = new HashMap<>();
+//                            user.put("email", email);
+//                            user.put("liked", new ArrayList<>());
+//                            user.put("genre",new ArrayList<>());
+//                            String id = collectionReference.document().getId();
+//                            collectionReference.document(id).set(user)
+//                                    .addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show())
+//                                    .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show());
+//                        }
+//                    }
+//                });
+//    }
 }
