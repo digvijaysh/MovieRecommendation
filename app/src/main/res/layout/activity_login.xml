@@ -21,15 +21,15 @@
         app:titleTextAppearance="@style/Toolbar.TitleText"
         app:titleTextColor="#FFFFFF" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvSignInMessage"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:text="Sign In"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="28dp" />-->
+    <TextView
+        android:id="@+id/tvSignInMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Welcome!"
+        android:textColor="@color/white"
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/username"
@@ -40,7 +40,7 @@
         android:textColor="@color/black"
         android:background="@drawable/et_rounded"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         />
 
     <EditText
@@ -92,6 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:padding="10dp"
          />
 
     <Button

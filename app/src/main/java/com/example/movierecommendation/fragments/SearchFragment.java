@@ -10,15 +10,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.movierecommendation.R;
 import com.example.movierecommendation.model.Movie;
@@ -77,23 +78,42 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         editText = view.findViewById(R.id.ed1);
         recyclerView = view.findViewById(R.id.rvSearch);
-        search = view.findViewById(R.id.search);
+        //search = view.findViewById(R.id.search);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        search.setOnClickListener(v -> {
-            String result = "";
-            String title = editText.getText().toString();
-            if (!title.equals("")) {
-                String s = title.charAt(0) + "";
-                String s1 = title.substring(1, title.length());
-                result = s.toUpperCase() + s1;
-                firebaseMovieSearch(result);
-            } else {
-                editText.setError("Empty Search");
-                editText.requestFocus();
+//        search.setOnClickListener(v -> {
+////            String result = "";
+////            String title = editText.getText().toString();
+////            if (!title.equals("")) {
+////                String s = title.charAt(0) + "";
+////                String s1 = title.substring(1, title.length());
+////                result = s.toUpperCase() + s1;
+////            }
+////            firebaseMovieSearch(result);
+//        });
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    String result = "";
+                    String title = editText.getText().toString();
+                    if (!title.equals("")) {
+                        String s = title.charAt(0) + "";
+                        String s1 = title.substring(1, title.length());
+                        result = s.toUpperCase() + s1;
+                    }
+                    firebaseMovieSearch(result);
+                }
+                return false;
+
             }
         });
+
+
     }
+
+
 
     private void firebaseMovieSearch(String title) {
         Query query = databaseReference.orderByChild("Title").startAt(title).endAt(title + "\uf8ff");
@@ -114,7 +134,7 @@ public class SearchFragment extends Fragment {
                         Fragment fragment = new MovieDetailFragment();
                         Bundle bundle = new Bundle();
                         bundle.putString("result", movie.Poster + "#" + movie.Title + "#" + movie.Runtime + "#"
-                                + movie.Year.substring(0, 4) + "#" + movie.Genre + "#" + movie.Plot);
+                                + movie.Year.substring(0,4) + "#" + movie.Genre + "#" + movie.Plot);
                         fragment.setArguments(bundle);
                         manager.beginTransaction().replace(R.id.flContainer, fragment).addToBackStack(null).commit();
                     }
@@ -152,7 +172,7 @@ public class SearchFragment extends Fragment {
             int g = genre.indexOf(",");
             tvTitle.setText(title);
             tvGenre.setText(genre.substring(0, g == -1 ? genre.length() : g));
-            tvReleasedDate.setText(year.substring(0,4));
+            tvReleasedDate.setText(year);
             tvDuration.setText(duration);
             Picasso.get().load(poster1).into(poster);
 

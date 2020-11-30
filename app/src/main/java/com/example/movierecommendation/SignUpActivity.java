@@ -38,7 +38,6 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-
     public void registerUser(View view) {
         String user = userName.getText().toString().trim();
         String pass = password.getText().toString().trim();

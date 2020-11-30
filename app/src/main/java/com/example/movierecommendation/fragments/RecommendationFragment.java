@@ -44,10 +44,22 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
+class SortById implements Comparator<Movie> {
+
+    @Override
+    public int compare(Movie o1, Movie o2) {
+        if (o1.id > o2.id) return -1;
+        else if (o1.id == o2.id) return 0;
+        return 1;
+    }
+}
 
 public class RecommendationFragment extends Fragment {
 
@@ -146,7 +158,7 @@ public class RecommendationFragment extends Fragment {
                                 }
                             }
                             List<RecommendationClient.Result> results = recommend(selectedMovies);
-                           // System.out.println("Results = " + results);
+                            System.out.println("Results = " + results);
                             database.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -158,8 +170,11 @@ public class RecommendationFragment extends Fragment {
                                             if (movie.Title == null)
                                                 continue;
                                             if (item.title.toLowerCase().contains(movie.Title.toLowerCase())) {
-                                                if (!movieList.contains(movie))
+                                                if (!movieList.contains(movie)) {
+                                                    float id = results.get(i).confidence;
+                                                    movie.id = id;
                                                     movieList.add(movie);
+                                                }
                                             }
                                         }
                                     }
@@ -167,6 +182,7 @@ public class RecommendationFragment extends Fragment {
                                         if (user.liked.size() < 5) {
                                             Toast.makeText(getContext(), "Like More Movies for Better Results", Toast.LENGTH_LONG).show();
                                         }
+                                        Collections.sort(movieList,new SortById());
                                         movieAdapter = new MovieAdapter(getActivity(), movieList);
                                         rvRecommend.setAdapter(movieAdapter);
                                     }

@@ -34,6 +34,7 @@ public class Movie {
     public String imdbRating;
     public String totalSeasons;
     public Boolean isLiked = false;
+    public float id;
 
     @Override
     public String toString() {
@@ -67,6 +68,7 @@ public class Movie {
                 ", imdbRating='" + imdbRating + '\'' +
                 ", totalSeasons='" + totalSeasons + '\'' +
                 ", isLiked=" + isLiked +
+                ", id=" + id +
                 '}';
     }
 

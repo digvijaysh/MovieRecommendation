@@ -1,5 +1,6 @@
 package com.example.movierecommendation;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -43,12 +44,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+
         account = GoogleSignIn.getLastSignedInAccount(this);
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = firebaseFirestore.collection("users");
-      //  addUserToFireStore();
-
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
@@ -83,26 +83,4 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-//    public void addUserToFireStore() {
-//        String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
-//        Log.d("MainActivity", email);
-//        collectionReference
-//                .whereEqualTo("email", email)
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        if (queryDocumentSnapshots.size() == 0) {
-//                            Map<String, Object> user = new HashMap<>();
-//                            user.put("email", email);
-//                            user.put("liked", new ArrayList<>());
-//                            user.put("genre",new ArrayList<>());
-//                            String id = collectionReference.document().getId();
-//                            collectionReference.document(id).set(user)
-//                                    .addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show())
-//                                    .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show());
-//                        }
-//                    }
-//                });
-//    }
 }

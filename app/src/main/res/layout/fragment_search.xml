@@ -5,51 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.SearchFragment">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#6d6d6d"
-        android:textAlignment="center"
-        android:theme="@style/ToolbarTheme"
-        app:title="MovieFlix"
-        app:titleMarginBottom="5dp"
-        app:titleMarginTop="5dp"
-        app:titleTextAppearance="@style/Toolbar.TitleText"
-        app:titleTextColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/ed1"
-        android:layout_below="@id/toolbar"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
         android:background="@drawable/et_rounded"
         android:ems="10"
         android:hint="Search"
-        android:inputType="textPersonName"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:textColor="@android:color/white"
         android:paddingStart="20dp"
         android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/search"
-        android:layout_below="@id/toolbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/ed1"
-        android:backgroundTint="@color/blue"
-        android:text="Done"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/white"
-        />
+    <!--    <Button-->
+    <!--        android:id="@+id/search"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_toRightOf="@+id/ed1"-->
+    <!--        android:backgroundTint="@color/blue"-->
+    <!--        android:text="Done"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search"
+        android:layout_below="@+id/ed1"
         android:layout_marginTop="20dp" />
 </RelativeLayout>
