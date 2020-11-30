@@ -152,7 +152,7 @@ public class SearchFragment extends Fragment {
             int g = genre.indexOf(",");
             tvTitle.setText(title);
             tvGenre.setText(genre.substring(0, g == -1 ? genre.length() : g));
-            tvReleasedDate.setText(year);
+            tvReleasedDate.setText(year.substring(0,4));
             tvDuration.setText(duration);
             Picasso.get().load(poster1).into(poster);
 

@@ -93,7 +93,7 @@ public class ProfileFragment extends Fragment {
             Picasso.get().load(photoURL).into(image);
         }
         else{
-            image.setImageDrawable(getResources().getDrawable(R.drawable.ic_profile));
+            image.setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_new));
         }
         return view;
     }

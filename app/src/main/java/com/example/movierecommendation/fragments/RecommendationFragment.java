@@ -146,7 +146,7 @@ public class RecommendationFragment extends Fragment {
                                 }
                             }
                             List<RecommendationClient.Result> results = recommend(selectedMovies);
-                         //   System.out.println("Results = " + results);
+                           // System.out.println("Results = " + results);
                             database.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -163,9 +163,15 @@ public class RecommendationFragment extends Fragment {
                                             }
                                         }
                                     }
-                                    movieAdapter = new MovieAdapter(getActivity(), movieList);
-                                    rvRecommend.setAdapter(movieAdapter);
+                                    if (user.liked.size() != 0) {
+                                        if (user.liked.size() < 5) {
+                                            Toast.makeText(getContext(), "Like More Movies for Better Results", Toast.LENGTH_LONG).show();
+                                        }
+                                        movieAdapter = new MovieAdapter(getActivity(), movieList);
+                                        rvRecommend.setAdapter(movieAdapter);
+                                    }
                                 }
+
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                     Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_LONG).show();

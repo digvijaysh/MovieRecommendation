@@ -138,12 +138,12 @@ public class RecommendationClient {
         continue;
       }
       if (selectedMovies.contains(item)) {
-     //   Log.v(TAG, String.format("Inference output[%d]. Id: %s is contained", i, id));
+      //  Log.v(TAG, String.format("Inference output[%d]. Id: %s is contained", i, id));
         continue;
       }
       Result result = new Result(id, item, confidences[i]);
       results.add(result);
-   //   Log.v(TAG, String.format("Inference output[%d]. Result: %s", i, result));
+     // Log.v("REC23", String.format("Inference output[%d]. Result: %s", i, result));
     }
 
     return results;

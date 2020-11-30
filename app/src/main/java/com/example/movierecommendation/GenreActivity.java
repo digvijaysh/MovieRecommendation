@@ -140,8 +140,10 @@ public class GenreActivity extends AppCompatActivity implements View.OnClickList
                             user.put("liked", new ArrayList<>());
                             user.put("genre", list);
                             collectionReference.document(id).set(user)
-                                    .addOnSuccessListener(aVoid -> Toast.makeText(GenreActivity.this, "Saved", Toast.LENGTH_SHORT).show())
-                                    .addOnFailureListener(e -> Toast.makeText(GenreActivity.this, "Error", Toast.LENGTH_SHORT).show());
+                                    .addOnSuccessListener(aVoid ->
+                                            Log.d("GenreActivity","Record Added"))
+                                    .addOnFailureListener(e ->
+                                            Log.d("GenreActivity","Error"));
                         }
                     }
                 });
