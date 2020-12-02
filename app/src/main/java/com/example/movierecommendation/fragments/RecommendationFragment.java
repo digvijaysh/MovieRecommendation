@@ -182,7 +182,7 @@ public class RecommendationFragment extends Fragment {
                                         if (user.liked.size() < 5) {
                                             Toast.makeText(getContext(), "Like More Movies for Better Results", Toast.LENGTH_LONG).show();
                                         }
-                                        Collections.sort(movieList,new SortById());
+                                      //  Collections.sort(movieList,new SortById());
                                         movieAdapter = new MovieAdapter(getActivity(), movieList);
                                         rvRecommend.setAdapter(movieAdapter);
                                     }

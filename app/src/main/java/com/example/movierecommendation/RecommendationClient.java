@@ -107,13 +107,13 @@ public class RecommendationClient {
   synchronized int[] preprocess(List<MovieItem> selectedMovies) {
     int[] inputContext = new int[config.inputLength];
     for (int i = 0; i < config.inputLength; i++) {
-//      if (i < selectedMovies.size()) {
-//        MovieItem item = selectedMovies.get(i);
-//        inputContext[i] = item.id;
-//      } else {
-//        // Padding input.
-//        inputContext[i] = config.pad;
-//      }
+      if (i < selectedMovies.size()) {
+        MovieItem item = selectedMovies.get(i);
+        inputContext[i] = item.id;
+      } else {
+        // Padding input.
+        inputContext[i] = config.pad;
+      }
       inputContext[i] = config.pad;
     }
     return inputContext;
