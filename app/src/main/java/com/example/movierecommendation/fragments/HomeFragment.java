@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment {
                                         }
                                     }
                                     Collections.shuffle(movieList);
-                                    movieAdapter = new MovieAdapter(getContext(), movieList);
+                                    movieAdapter = new MovieAdapter(getActivity(), movieList);
                                     rvMovies.setAdapter(movieAdapter);
                                 }
 

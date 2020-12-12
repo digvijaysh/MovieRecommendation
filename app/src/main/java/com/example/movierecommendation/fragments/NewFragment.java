@@ -104,7 +104,7 @@ public class NewFragment extends Fragment {
                                         }
                                     }
                                     Collections.sort(movieList, new SortByYear());
-                                    movieAdapter = new MovieAdapter(getContext(), movieList);
+                                    movieAdapter = new MovieAdapter(getActivity(), movieList);
                                     rvNewTab.setAdapter(movieAdapter);
                                 }
 

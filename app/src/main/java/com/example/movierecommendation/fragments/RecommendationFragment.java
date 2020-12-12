@@ -89,7 +89,6 @@ public class RecommendationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = new User();
-        movieList = new ArrayList<>();
         collectionReference = firebaseFirestore.collection("users");
         account = GoogleSignIn.getLastSignedInAccount(getContext());
 
@@ -135,6 +134,7 @@ public class RecommendationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvRecommend = view.findViewById(R.id.rvRecommend);
         rvRecommend.setLayoutManager(new LinearLayoutManager(getContext()));
+        movieList = new ArrayList<>();
         String email = account == null ? FirebaseAuth.getInstance().getCurrentUser().getEmail() : account.getEmail();
         collectionReference
                 .whereEqualTo("email", email)
@@ -169,7 +169,7 @@ public class RecommendationFragment extends Fragment {
                                             MovieItem item = results.get(i).item;
                                             if (movie.Title == null)
                                                 continue;
-                                            if (item.title.toLowerCase().contains(movie.Title.toLowerCase())) {
+                                            if (item.title.contains(movie.Title)) {
                                                 if (!movieList.contains(movie)) {
                                                     float id = results.get(i).confidence;
                                                     movie.id = id;
@@ -182,7 +182,7 @@ public class RecommendationFragment extends Fragment {
                                         if (user.liked.size() < 5) {
                                             Toast.makeText(getContext(), "Like More Movies for Better Results", Toast.LENGTH_LONG).show();
                                         }
-                                      //  Collections.sort(movieList,new SortById());
+                                        Collections.sort(movieList,new SortById());
                                         movieAdapter = new MovieAdapter(getActivity(), movieList);
                                         rvRecommend.setAdapter(movieAdapter);
                                     }

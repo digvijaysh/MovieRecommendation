@@ -111,10 +111,8 @@ public class RecommendationClient {
         MovieItem item = selectedMovies.get(i);
         inputContext[i] = item.id;
       } else {
-        // Padding input.
         inputContext[i] = config.pad;
       }
-      inputContext[i] = config.pad;
     }
     return inputContext;
   }
@@ -135,16 +133,16 @@ public class RecommendationClient {
       int id = outputIds[i];
       MovieItem item = candidates.get(id);
       if (item == null) {
-    //    Log.v(TAG, String.format("Inference output[%d]. Id: %s is null", i, id));
+       //Log.v(TAG, String.format("Inference output[%d]. Id: %s is null", i, id));
         continue;
       }
       if (selectedMovies.contains(item)) {
-      //  Log.v(TAG, String.format("Inference output[%d]. Id: %s is contained", i, id));
+       // Log.v(TAG, String.format("Inference output[%d]. Id: %s is contained", i, id));
         continue;
       }
       Result result = new Result(id, item, confidences[i]);
       results.add(result);
-     // Log.v("REC23", String.format("Inference output[%d]. Result: %s", i, result));
+      Log.v("REC23", String.format("Inference output[%d]. Result: %s", i, result));
     }
 
     return results;
